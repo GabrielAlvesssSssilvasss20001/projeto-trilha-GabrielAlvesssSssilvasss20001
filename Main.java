@@ -19,6 +19,7 @@ class Main {
       System.out.println("\nOlá, " + nome + "! Agora, informe a sua idade, por favor:\n");
 
       String idade = console.readLine();
+
       byte idadeInt = (byte) Integer.parseInt(idade);
 
       boolean ageVer = (idadeInt >= 18);
@@ -37,8 +38,9 @@ class Main {
 
           String ansVer = console.readLine();
           byte ansVerInt = (byte) Integer.parseInt(ansVer);
+          
 
-          if (ansVerInt == 1)
+          if (ansVerInt==1)
           {
             System.out.println("Sua jornada começará em breve, "+nome+"! Te vejo logo.");
           }
