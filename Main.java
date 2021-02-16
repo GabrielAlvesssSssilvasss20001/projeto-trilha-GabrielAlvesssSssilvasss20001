@@ -19,6 +19,7 @@ class Main {
       System.out.println("\nOlá, " + nome + "! Agora, informe a sua idade, por favor:\n");
 
       String idade = console.readLine();
+
       byte idadeInt = (byte) Integer.parseInt(idade);
 
       boolean ageVer = (idadeInt >= 18);
@@ -37,17 +38,26 @@ class Main {
 
           String ansVer = console.readLine();
           byte ansVerInt = (byte) Integer.parseInt(ansVer);
+          
 
-          if (ansVerInt == 1)
+          if (ansVerInt==1)
           {
-            System.out.println("Sua jornada começará em breve, "+nome+"! Te vejo logo.");
+            System.out.println("\nSua jornada começará em breve, "+nome+"! Te vejo logo.");
           }
-          else {
-            System.out.println(" :/ Tente novamente.");
+          else{
+            System.out.println("\n :/ Tente novamente.");
           }
         }
+      else if (idadeInt <= 5 && idadeInt >=0) {
+        System.out.println("\nVocê não possui autorização para acessar esse website!");
+      }
+      else if (idadeInt<0) {
+        System.out.println("\nImpossível!");
+        throw new Exception("BROKEN - BIP, BIP, BIP... - REPAIR NOW, BIP...");
+      }
       else {
-        System.out.println("\nQue pena,"+nome+". Você precisa ser maior de idade para acessar o portal.");
+        int wait = (18 - idadeInt);
+        System.out.println("\nQue pena, "+nome+". Você precisa ser maior de idade para acessar o portal. :( \nEspere só mais "+wait+" anos ou acesse o site acompanhado de um responsável maior de idade.");
       }
     }
     catch (Exception e) {
