@@ -113,6 +113,7 @@ class Main {
           }
           else {
               System.out.println("\nDescupe. Ocorreu uma falha na autenticação. Tente novamente :P");
+
               throw new Exception("Erro de Autenticação - BROKEN - BIP, BIP, BIP... - REPAIR NOW, BIP... SERVER BROKEN, BIP, BIP");
           }
         break;
