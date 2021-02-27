@@ -2,7 +2,31 @@ import java.io.Console;
 
 import java.util.Random;
 
-import org.w3c.dom.ranges.RangeException;
+import java.util.Vector;
+//import org.w3c.dom.ranges.RangeException;
+
+// Game class:
+
+class Game {
+  public String title;
+  public int year;
+  public String description;
+  public String organization;
+  public String evaluation;
+  public double grade;
+
+
+  Game(String title, int year, String description, String organization, String evaluation, double grade) {
+    this.title = title;
+    this.year = year;
+    this.description = description;
+    this.organization = organization;
+    this.evaluation = evaluation;
+    this.grade = grade;
+  }
+}
+
+// Main class with the methods used:
 
 class Main {
   public static boolean isNumeric(String str) { 
@@ -13,7 +37,123 @@ class Main {
       return false;  
     }  
   }
+
+  public static String obterOpcao() {
+      Console console = System.console();
+      
+      System.out.println("");
+      System.out.println("********************************************");
+      System.out.println("** Informe a opção desejada: **");
+      System.out.println("- Digite 1 para Inserir novo jogo e descrição // 1 - Insert a new game and its description");
+      System.out.println("- Digite 2 para Listar jogos // 2 - List the inserted games");
+      System.out.println("- Digite 3 para listar os jogos mais bem avaliados // 3 - List the greatest games in evaluation terms");
+      System.out.println("- Digite X para SAIR - 9 - CLOSE the application");
+      System.out.println("********************************************");
+      System.out.println("");
+
+      String option = console.readLine();
+      return option;
+  }
   
+  public static void pinGame(Game[] gamesVector) {
+    Game pinnedGame = new Game("", 0, "", "", "", 0);
+
+    pinnedGame.title = "Batman - Arkham Knight, por Rocksteady (História Principal)";
+    
+    pinnedGame.year = 2015;
+    
+    pinnedGame.description = "\"Batman: Arkham Knight é um jogo eletrônico de ação-aventura produzido pela Rocksteady Studios e lançado mundialmente 23 de Junho de 2015 pela Warner Bros. Interactive Entertainment para PlayStation 4, Xbox One e Microsoft Windows.\"  WIKI";
+    
+    pinnedGame.organization = "Gabriel Alves - Não tenho formação, sou jogador e a crítica é amadora, mas honesta";
+    
+    pinnedGame.evaluation = " *EVITEI SPOILERS, MAS LEIA COM PRECAUÇÃO* \"A aventura definitiva do Homem-Morcego (trecho por TechTudo) \" contra os criminosos de Gotham City. Batman - Arkham Knight, o último título da épica trilogia desenvolvida pela Rocksteady, elevou o conceito dos jogos de super-heróis. Claro, grande parte do crédito deve ser dado aos seus antecessores, Arkham Asylum (), Arkham City () e até mesmo o avulso Arkham Origins (), desenvolvido pela Warner Bros Montréal, que construiram um legado por meio de uma história sólida, gameplay fluído, personagens marcantes e nostálgicos e trama envolvente. E, justamente por isso, que, para uma nova geração de consoles, não se esperava menos do encerramento da série de games do melhor detetive do mundo. Um jogo marcante, com uma história profunda, que mantém personagens clássicos de um jeito bastante inesperado e acrescenta outros, mais desafiadores, motivados por destruir o Batman e tomar o controle de Gotham de uma vez por todas. O gameplay é tão fluído quanto nos demais títulos e possui novas mecânicas, apesar de repetir uma boa parte das antigas. Precisar de pontos de upgrade para desbloquear algumas habilidades já conhecidas e EXTENSAMENTE usadas nos games anteriores talvez seja um dos únicos pontos frustrantes do jogo. A constução das três regiões principais de Gotham, entretanto, é surpreendente. Os gráficos incríveis e a cidade detalhada tornam sua exploração muito satisfatória, e as novas mecânicas ajudam bastante. Sem falar, é lógico, de um dos principais incrementos do jogo, o Batmóvel, que nos dá novas formas de combater o crime em Gotham: perseguições em alta velocidade, detruição em massa e combates pesados contra drones e helicópteros, fazendo uso da infantaria do modo combate. Assim, com uma continuação incrível e gráficos insanos (para constar: o jogo é de 2015!!!), Batman Arkham Knight merece o título de um dos melhores da geração passada (PS4, XBOX ONE) de vídeo-games e continua imperdível para a nova.";
+    
+    pinnedGame.grade = 9.5;
+
+    gamesVector[0] = pinnedGame;
+  }
+
+  public static void gameOptions(Game[] gamesVector, int vectorLength, String nome) {
+    Console console = System.console();
+    
+    int index = 1;
+
+    String option = obterOpcao();
+
+    while (option.toUpperCase()!="X" && index<vectorLength) {
+      
+      switch (option) {
+
+        case "1":
+          Game game = new Game("", 0, "", "", "", 0);
+
+          System.out.println("\n \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \nAvaliar como " +nome+"? 1 ou 0");
+          String ansVer2 = console.readLine();
+          
+          if (Integer.parseInt(ansVer2)!=1) {
+            System.out.println("Erro de validação de usuário");
+            System.exit(0);
+          }
+
+          game.organization = nome;
+
+          System.out.println("\nVamos começar. Qual é o título do jogo a ser avaliado? - Especifique se abrange história principal, missões secundárias (quais) e/ou DLCs (quais)\n");
+          game.title = console.readLine();
+
+          System.out.println("\nInforme o ano de lançamento do escopo avaliado:\n");
+          String ano = console.readLine();
+          game.year = Integer.parseInt(ano);
+
+          System.out.println("\nApresente uma breve descrição do escopo avaliado:\n");
+          game.description = console.readLine();
+
+          System.out.println("\n*************\n");
+
+          System.out.println("\nAgora, dando início à sua crítica ao jogo:\n");
+
+          System.out.println("\n - Elabore uma avaliação escrita, tentando compreender os aspectos principais do jogo avaliado:\n");
+          game.evaluation = console.readLine();
+
+          System.out.println("\n - Por fim, informe uma nota númerica, entre 0 e 10, incluindo meios: \n");
+          String nota = console.readLine();
+          game.grade = Double.parseDouble(nota);
+
+          gamesVector[index] = game;
+
+          index++;
+
+        break;
+
+        case "2":
+          System.out.println("\n///////////////////////////////////////////////////////////////////////////////////\nLISTA DE JOGOS AVALIADOS ATÉ O MOMENTO\n");
+
+          for (Game gameItem : gamesVector) {
+            
+            if (!gameItem.title.isEmpty()) {
+              System.out.println("********************************************");
+              System.out.println("\nTítulo: "+gameItem.title+"\n");
+              System.out.println("\nAno de Lançamento: "+gameItem.year+"\n");
+              System.out.println("\nDescrição: "+gameItem.description+"\n");
+              System.out.println("************");
+              System.out.println("\nAvaliador(a)/Instituição: "+gameItem.organization+"\n");
+              System.out.println("\nAvaliação Escrita: "+gameItem.evaluation+"\n");
+              System.out.println("\nNota de 0 a 10: "+gameItem.grade+"\n");
+              System.out.println("********************************************");    
+            }
+            else {
+              continue;
+            }
+          }
+
+        break;
+      
+      }
+
+    option = obterOpcao();
+
+    }
+  }
+
   public static void main(String[] args) {
     /*
       Gabriel Alves - ADS P3 - POO
@@ -21,13 +161,19 @@ class Main {
     */
 
     try {
+      // Definição de variáveis/métodos globais iniciais para escopo do método 'main':
+      
       Random rd = new Random();
 
-      System.out.println("\nBem-vindo ao GRamers, o maior portal de avaliações de jogos da América Latina! (aqueles que sonham alto)\n");
+      final int vectorLength = 20;
+
+      Console console = System.console();
+
+      Game[ ] gamesVector = new Game[vectorLength];
+
+      System.out.println("\n \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \nBem-vindo ao GRamers, o maior portal de avaliações de jogos da América Latina! (aqueles que sonham alto)\n");
 
       System.out.println("Para começarmos, escolha uma opção:\n - Digite 1 : Cadastre-se\n - Digite 2: Login\n - Digite -1: Sair da Aplicação\n");
-      
-      Console console = System.console();
 
       String opt = console.readLine();
 
@@ -95,7 +241,10 @@ class Main {
                   System.out.println("\nPara confirmar, sua senha uma última vez:");
                   passwordConfirm = console.readLine();
                 }
-                //// CADASTRO DE GAMES
+
+                Main.pinGame(gamesVector);
+
+                Main.gameOptions(gamesVector, vectorLength, nome);
               }
             
             else if (idadeInt <= 5 && idadeInt >=0) {
@@ -112,6 +261,7 @@ class Main {
               int wait = (18 - idadeInt);
               System.out.println("\nQue pena, "+nome+". Você precisa ser maior de idade para acessar o portal. :( \nEspere só mais "+wait+" anos ou acesse o site acompanhado de um responsável maior de idade.");
             }
+
           break;
         
           case 2:
@@ -134,7 +284,10 @@ class Main {
             
             if (bool) {
                 System.out.println("\nLogin realizado - Você entrou!\nAguarde...");
-            //// CADSTRO DE GAMES
+
+                Main.pinGame(gamesVector);
+                
+                Main.gameOptions(gamesVector, vectorLength, enderecoLog);
             }
 
             else {
