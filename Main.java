@@ -80,7 +80,7 @@ class Main {
 
     String option = obterOpcao();
 
-    while (option.toUpperCase()!="X" && index<vectorLength) {
+    while (index<vectorLength) {
       
       switch (option) {
 
@@ -127,8 +127,8 @@ class Main {
         case "2":
           System.out.println("\n///////////////////////////////////////////////////////////////////////////////////\nLISTA DE JOGOS AVALIADOS ATÉ O MOMENTO\n");
 
-          for (Game gameItem : gamesVector) {
-            
+          for (int i = 0; i<gamesVector.length; i++) {
+            Game gameItem = gamesVector[i];
             if (!gameItem.title.isEmpty()) {
               System.out.println("********************************************");
               System.out.println("\nTítulo: "+gameItem.title+"\n");
@@ -141,12 +141,40 @@ class Main {
               System.out.println("********************************************");    
             }
             else {
-              continue;
+              break;
             }
           }
 
         break;
       
+        case "3":
+          System.out.println("\n///////////////////////////////////////////////////////////////////////////////////\nLISTA DE JOGOS MAIS BEM AVALIADOS ATÉ O MOMENTO\n");
+
+          for (int i = 0; i<gamesVector.length; i++) {
+            Game gameItem = gamesVector[i];
+            if (gameItem.grade >=7.5) {             
+              System.out.println("********************************************");
+              System.out.println("\nTítulo: "+gameItem.title+"\n");
+              System.out.println("\nAno de Lançamento: "+gameItem.year+"\n");
+              System.out.println("\nDescrição: "+gameItem.description+"\n");
+              System.out.println("************");
+              System.out.println("\nAvaliador(a)/Instituição: "+gameItem.organization+"\n");
+              System.out.println("\nAvaliação Escrita: "+gameItem.evaluation+"\n");
+              System.out.println("\nNota de 0 a 10: "+gameItem.grade+"\n");
+              System.out.println("********************************************");
+            }
+            else {
+              continue;
+            }
+          }
+        break;
+
+        case "X":
+        case "x":
+          System.exit(0);
+        default:
+          // Ainda dá erro: throw new RangeException("Não é um dos valores disponíveis");
+          System.out.println("OutOfRangeException - Não é um dos valores disponíveis :< Tente novamente");
       }
 
     option = obterOpcao();
@@ -182,11 +210,11 @@ class Main {
         opt = console.readLine();
       }
       
-      byte optInt = (byte) Integer.parseInt(opt);
+//      byte optInt = (byte) Integer.parseInt(opt);
 
       do {
-        switch(optInt) {
-          case 1:
+        switch(opt) {
+          case "1":
             System.out.println("\nEu sou a IAdriana, sua guia pelo mundo dos games (e das críticas amadoras). \nPrimeiro, informe o seu nome de usuário:\n");
 
             String nome = console.readLine();
@@ -264,7 +292,7 @@ class Main {
 
           break;
         
-          case 2:
+          case "2":
             System.out.println("Já realizou cadastro aqui? Então, bem-vindo(a)(e) de volta!\nInforme seu endereço de login:");
             
             String enderecoLog = console.readLine();
@@ -298,7 +326,7 @@ class Main {
 
           break;
           
-          case -1:
+          case "-1":
             System.out.println("byebye!");
             System.exit(0);
 
@@ -316,8 +344,8 @@ class Main {
           opt = console.readLine();
         }
         
-        optInt = (byte) Integer.parseInt(opt);
-      } while (optInt!=-1);
+//        optInt = (byte) Integer.parseInt(opt);
+      } while (opt!="-1");
 
       System.out.println("byebye!");
     
