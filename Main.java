@@ -1,5 +1,5 @@
 import java.io.Console;
-
+import java.util.ArrayList;
 import java.util.Random;
 
 import java.util.Vector;
@@ -47,7 +47,7 @@ class Main {
       System.out.println("- Digite 1 para Inserir novo jogo e descrição // 1 - Insert a new game and its description");
       System.out.println("- Digite 2 para Listar jogos // 2 - List the inserted games");
       System.out.println("- Digite 3 para listar os jogos mais bem avaliados // 3 - List the greatest games in evaluation terms");
-      System.out.println("- Digite X para SAIR - 9 - CLOSE the application");
+      System.out.println("- Digite X para SAIR - X - CLOSE the application");
       System.out.println("********************************************");
       System.out.println("");
 
@@ -55,7 +55,7 @@ class Main {
       return option;
   }
   
-  public static void pinGame(Game[] gamesVector) {
+  public static void pinGame(ArrayList<Game> gamesVector) {
     Game pinnedGame = new Game("", 0, "", "", "", 0);
 
     pinnedGame.title = "Batman - Arkham Knight, por Rocksteady (História Principal)";
@@ -70,17 +70,15 @@ class Main {
     
     pinnedGame.grade = 9.5;
 
-    gamesVector[0] = pinnedGame;
+    gamesVector.add(pinnedGame);
   }
 
-  public static void gameOptions(Game[] gamesVector, int vectorLength, String nome) {
+  public static void gameOptions(ArrayList<Game> gamesVector, String nome) {
     Console console = System.console();
     
-    int index = 1;
-
     String option = obterOpcao();
 
-    while (index<vectorLength) {
+    while (true) {
       
       switch (option) {
 
@@ -118,17 +116,14 @@ class Main {
           String nota = console.readLine();
           game.grade = Double.parseDouble(nota);
 
-          gamesVector[index] = game;
-
-          index++;
+          gamesVector.add(game);
 
         break;
 
         case "2":
           System.out.println("\n///////////////////////////////////////////////////////////////////////////////////\nLISTA DE JOGOS AVALIADOS ATÉ O MOMENTO\n");
 
-          for (int i = 0; i<gamesVector.length; i++) {
-            Game gameItem = gamesVector[i];
+          for (Game gameItem : gamesVector) {
             if (!gameItem.title.isEmpty()) {
               System.out.println("********************************************");
               System.out.println("\nTítulo: "+gameItem.title+"\n");
@@ -150,8 +145,7 @@ class Main {
         case "3":
           System.out.println("\n///////////////////////////////////////////////////////////////////////////////////\nLISTA DE JOGOS MAIS BEM AVALIADOS ATÉ O MOMENTO\n");
 
-          for (int i = 0; i<gamesVector.length; i++) {
-            Game gameItem = gamesVector[i];
+          for (Game gameItem : gamesVector) {
             if (gameItem.grade >=7.5) {             
               System.out.println("********************************************");
               System.out.println("\nTítulo: "+gameItem.title+"\n");
@@ -193,11 +187,9 @@ class Main {
       
       Random rd = new Random();
 
-      final int vectorLength = 20;
-
       Console console = System.console();
 
-      Game[ ] gamesVector = new Game[vectorLength];
+      ArrayList<Game> gamesVector = new ArrayList();
 
       System.out.println("\n \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ \nBem-vindo ao GRamers, o maior portal de avaliações de jogos da América Latina! (aqueles que sonham alto)\n");
 
@@ -272,7 +264,7 @@ class Main {
 
                 Main.pinGame(gamesVector);
 
-                Main.gameOptions(gamesVector, vectorLength, nome);
+                Main.gameOptions(gamesVector, nome);
               }
             
             else if (idadeInt <= 5 && idadeInt >=0) {
@@ -315,7 +307,7 @@ class Main {
 
                 Main.pinGame(gamesVector);
                 
-                Main.gameOptions(gamesVector, vectorLength, enderecoLog);
+                Main.gameOptions(gamesVector, enderecoLog);
             }
 
             else {
