@@ -1,5 +1,5 @@
 # Tema: Jogos Virtuais
-# Sistema: GRames - Faça Resenhas Amdadoras sobre Jogos Virtuais!
+# Sistema: GRames - Faça Resenhas Amadoras sobre Jogos Virtuais!
 
 A ideia central do projeto é desenvolver um sistema que possibilite a criação de resenhas sobre jogos já testados pelo avaliador. As resenhas possuem duas zonas principais: uma destinada a armazenar informações sobre os jogos, como nome, ano de lançamento, nota média no MetaCritic + link, ou em outra plataforma conhecida que reúna críticas, sinopse da história, estúdio e publisher responsáveis por seu lançamento; e outra para a crítica em si, com o nome do avaliador, a nota, que varia de 0 a 10, com meios considerados, e campos para a avaliação por extenso dos principais aspectos do jogo (não sendo obrigatória a avaliação de todos eles): gameplay e suas variações, gráficos, física, modelagem, história, personagens, imersão, custo, experiência do usuário com as interfaces e práticas do estúdo e da publisher embutidas ao jogo.
 
